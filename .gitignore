@@ -22,3 +22,7 @@ nbbuild/
 dist/
 nbdist/
 .nb-gradle/
+/overcomplicated-tictactoe/overcomplicated-tictactoe.iml
+/funfact-service/funfact-service.iml
+/comics-service/comics-service.iml
+/avatar-service/avatar-service.iml
