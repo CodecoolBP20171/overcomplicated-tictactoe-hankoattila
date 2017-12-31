@@ -39,10 +39,14 @@ Game.prototype.turn = function (player) {
         return me.board.step(player.symbol, step);
     }).then(function (winner) {
         if (winner) {
-            // Todo game over
+            setTimeout(function () {
+                alert(winner);
+            },10);
         } else {
             me.turn(me.getOpponent(player));
         }
+    }).catch(function () {
+        me.turn(player);
     });
 };
 

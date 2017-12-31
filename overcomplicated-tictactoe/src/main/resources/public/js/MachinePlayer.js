@@ -1,7 +1,7 @@
 function MachinePlayer(symbol) {
     this.symbol = symbol;
     // http://tttapi.herokuapp.com/api/v1/-O-----X-/O
-    this.url = "http://tttapi.herokuapp.com/api/v1/{board}/{symbol}";
+    this.url = "http://localhost:8080/tictactoe-api/{board}/{symbol}";
 
 }
 
@@ -11,16 +11,15 @@ function MachinePlayer(symbol) {
  * @returns {Promise<Step>}
  */
 MachinePlayer.prototype.turn = function (board) {
-    // {"game":"-O-----X-","player":"O","recommendation":8,"strength":0}
-    let url = this.url.replace('{board}', this.boardToString(board)).replace('{symbol}', this.symbol.toUpperCase());
     let me = this;
+    // {"game":"-O-----X-","player":"O","recommendation":8,"strength":0}
+    let url = me.url.replace('{board}', me.boardToString(board)).replace('{symbol}', me.symbol.toUpperCase());
 
-    return new Promise(function (resolve, reject) {
-        //Todo Make decision based on board then resolve with a step
+    return new Promise(function (resolve) {
         fetch(url).then(function (response) {
             return response.json();
-        }).then(function (json) {
-            resolve(me.numberToStep(json.recommendation));
+        }).then(function (result) {
+            resolve(me.numberToStep(result.recommendation));
         })
     });
 };

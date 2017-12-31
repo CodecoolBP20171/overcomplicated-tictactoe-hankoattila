@@ -3,11 +3,9 @@ package com.codecool.enterprise.overcomplicated.controller;
 import com.codecool.enterprise.overcomplicated.model.Player;
 import com.codecool.enterprise.overcomplicated.model.TicTacToeGame;
 import com.codecool.enterprise.overcomplicated.service.TicTacToeService;
+import org.json.JSONObject;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.SessionAttributes;
+import org.springframework.web.bind.annotation.*;
 
 import java.io.IOException;
 
@@ -49,6 +47,14 @@ public class GameController {
     @ModelAttribute("comic_uri")
     public String getComicUri() throws IOException {
         return ticTacToeService.getComics();
+    }
+
+    @GetMapping("/tictactoe-api/{board}/{symbol}")
+    @ResponseBody
+    public String getAi(@PathVariable("board") String board,
+                            @PathVariable("symbol") String symbol) throws IOException {
+        return ticTacToeService.getAi(board, symbol);
+
     }
 
 

@@ -13,20 +13,25 @@ public class TicTacToeService {
 
     public String getAvatar(String userName) throws IOException {
         URL url = new URL("http://localhost:54444/" + userName);
-        JSONObject avatarUrl = HttpClient.get(url);
-        return avatarUrl.getString("avatar_uri");
+        JSONObject jsonObject = HttpClient.get(url);
+        return jsonObject.getString("avatar_uri");
     }
 
     public String getFunFact() throws IOException {
         URL url = new URL("http://localhost:54448/");
-        JSONObject avatarUrl = HttpClient.get(url);
-        return avatarUrl.getString("funfact");
+        JSONObject jsonObject = HttpClient.get(url);
+        return jsonObject.getString("funfact");
     }
 
     public String getComics() throws IOException {
         URL url = new URL("http://localhost:54446/");
-        JSONObject avatarUrl = HttpClient.get(url);
-        return avatarUrl.getString("comic_uri");
+        JSONObject jsonObject = HttpClient.get(url);
+        return jsonObject.getString("comic_uri");
+    }
+    public String getAi(String board, String symbol) throws IOException {
+        URL url = new URL("http://localhost:54442/" + board + "/" + symbol);
+        JSONObject jsonObject = HttpClient.get(url);
+        return jsonObject.toString();
     }
 
 }
